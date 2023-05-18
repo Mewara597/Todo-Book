@@ -31,6 +31,17 @@ export default function List({ data }) {
     e.target.input.value = "";
   };
 
+  const handleChange = (e) => {
+    let index = e.target.id.split("-");
+    index = index[index.length - 1];
+    // state.splice(0, index);
+    // let inputValue = state;
+    setState((inputValue) => {
+      inputValue.splice(index, 1);
+      return [...inputValue];
+    });
+  };
+
   return (
     <div
       className="task-list-container border p-2"
@@ -65,6 +76,7 @@ export default function List({ data }) {
                   type="checkbox"
                   className="task-status-checkbox me-2"
                   id={`task-status-${index}`}
+                  onChange={handleChange}
                 />
                 <label className="bg-light" style={{ width: "14vw" }}>
                   {task}
